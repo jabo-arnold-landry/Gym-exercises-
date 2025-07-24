@@ -57,19 +57,36 @@ function checkingPath(graph, src, dest) {
   }
   return false;
 }
-console.log(checkingPath(graphs, "f", "k"));
+//console.log(checkingPath(graphs, "f", "k"));
+const edges = [
+  ["i", "j"],
+  ["k", "i"],
+  ["n", "k"],
+  ["k", "l"],
+  ["o", "n"],
+];
 
 // undirected graph
-const undirectedGraph = (edges, nodeA, nodeB) => {
-  helperfn(edges);
+const graph = helperfn(edges);
+const undirectedGraph = (edges, nodeA, nodeB, visited) => {
+  if (visited.has(nodeA)) return false;
+  visited.add(nodeA);
+  if (nodeA === nodeB) return true;
+  for (let neighbor of edges[nodeA]) {
+    if (undirectedGraph(edges, neighbor, nodeB, visited)) return true;
+  }
+  return false;
 };
-const helperfn = (edges) => {
+function helperfn(edges) {
   let graph = {};
   for (let edge of edges) {
     const [a, b] = edge;
-    if (!a in graph) graph[a] = [];
-    if (!b in graph) graph[b] = [];
+    if (!(a in graph)) graph[a] = [];
+    if (!(b in graph)) graph[b] = [];
     graph[a].push(b);
     graph[b].push(a);
   }
-};
+  return graph;
+}
+
+console.log(undirectedGraph(graph, "j", "i", new Set()));
