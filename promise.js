@@ -27,4 +27,6 @@ function sayJoke(url, jokeId) {
     return err.message;
   }
 }
-console.log(sayJoke("http://great.jokes/christmas", 101).sayPuncline());
+let url = "https://v2.jokeapi.dev/joke/Christmas";
+const joke = await sayJoke(url, 101);
+console.log(joke);
