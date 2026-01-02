@@ -1,7 +1,5 @@
 # arrayToObject
 
-
-
 ## Task
 
     Write a function named arrayToObject that receives an array of strings as parameter and returns an object where each key is an item of the array and its value is the index of that item.
