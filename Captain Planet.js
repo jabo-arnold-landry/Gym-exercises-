@@ -71,13 +71,10 @@ let dataFile =
   "##################################\n";
 
 function parseData() {
-  // Remember, your data is in a global variable dataFile
-  let regex = /#/gm;
-  let newString = dataFile.replaceAll(regex, "");
-  const arr = newString.split("Location:");
-  arr.shift();
+  const data = dataFile.split("#").filter((str) => str !== "");
 
-  const nesteArr = arr.reduce((acc, element, index) => {
+  const obj = {};
+  data.map((element) => {
     console.log(element);
   });
 }
