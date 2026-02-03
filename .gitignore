@@ -2,3 +2,6 @@
 StringToNumber.d.ts
 StringToNumber.d.ts.map
 StringToNumber.js.map
+*.d.ts.map
+*.js.map
+*.d.ts
