@@ -5,3 +5,4 @@ StringToNumber.js.map
 *.d.ts.map
 *.js.map
 *.d.ts
+/dist
