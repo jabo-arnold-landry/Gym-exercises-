@@ -1,11 +1,12 @@
 function isValidIP(str: string): boolean {
-  const arr = str.split(".");
-  if (arr.length !== 4) return false;
-  for (let digit of arr) {
-    const regex = /^(?:0|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gim;
-    if (!regex.test(digit)) return false;
-  }
-  return true;
+if(str.includes('\n')) return false
+const arr = str.split(".")
+if(arr.length !== 4) return false
+for(let digit of arr){
+    const regex = /^(?:0|[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gmi
+    if(!regex.test(digit)) return false
+}
+  return true
 }
 
 /* test case and description
