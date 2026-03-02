@@ -1,6 +1,6 @@
 function alphanumeric(string: string): boolean {
   if (!string.trim().length) return false;
-  const regex = /[_]|\W\s/gim;
+  const regex = /(\W|\s|_)/gim;
   if (!regex.test(string.trim())) return true;
   return false;
 }
