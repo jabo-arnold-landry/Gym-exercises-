@@ -7,10 +7,7 @@ function prefill(n, v) {
   )
     throw TypeError(`${n} is invalid`);
   if (Number(n) === 0) return [];
-
-  const repeatedStr = `${v}`.repeat(n);
-  const str = v;
-  return [str, ...prefill(n - 1, v)];
+  return [v, ...prefill(n - 1, v)];
 }
 
 /*
