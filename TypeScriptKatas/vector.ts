@@ -12,7 +12,8 @@ class Vector {
       throw Error("length of arrays must be equal!");
     }
 
-    return arr.map((num, index) => num + this.components[index]!);
+    this.components = arr.map((num, index) => num + this.components[index]!);
+    return this;
   }
 
   subtract(arr: ArrOrObjType) {
@@ -21,7 +22,8 @@ class Vector {
     if (arr.length !== this.components.length)
       throw Error("length of arrays must be equal!");
 
-    return arr.map((num, index) => num - this.components[index]!);
+    this.components = arr.map((num, index) => num - this.components[index]!);
+    return this;
   }
 
   dot(arr: ArrOrObjType) {
@@ -50,6 +52,12 @@ class Vector {
     });
     return booleanValues.includes(false) ? false : true;
   }
+
+  valueOf() {
+    return this.components;
+  }
+
+
 }
 
 const a = new Vector([1, 2, 3]);
@@ -57,5 +65,5 @@ const b = new Vector([3, 4, 5]);
 const c = new Vector([5, 6, 7, 8]);
 
 console.log(a.add(b));
-console.log(a.dot(b));
-console.log(a.equals(b));
+// console.log(a.dot(b));
+// console.log(a.equals(b));
