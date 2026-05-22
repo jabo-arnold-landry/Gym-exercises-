@@ -41,6 +41,9 @@ class Vector {
       .reduce((sum, num) => (sum += num));
     return Math.sqrt(result);
   }
+  toString() {
+    return `(${this.components})`;
+  }
 }
 declare global {
   interface Object {
@@ -81,4 +84,4 @@ const a = new Vector([1, 2, 3]);
 const b = new Vector([3, 4, 5]);
 const c = new Vector([5, 6, 7, 8]);
 
-console.log(a.equals(new Vector([4, 6, 80])));
+console.log(a.toString());
