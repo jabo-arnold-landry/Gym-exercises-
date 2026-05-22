@@ -52,7 +52,7 @@ declare global {
 }
 
 Object.prototype.equals = function (obj: any): boolean {
-  // Case 1: Vector comparison
+  // Vector vs Vector
   if (this instanceof Vector && obj instanceof Vector) {
     return (
       this.components.length === obj.components.length &&
@@ -60,7 +60,7 @@ Object.prototype.equals = function (obj: any): boolean {
     );
   }
 
-  // Case 2: Array comparison
+  // Array vs Array
   if (Array.isArray(this) && Array.isArray(obj)) {
     return (
       this.length === obj.length &&
@@ -68,7 +68,22 @@ Object.prototype.equals = function (obj: any): boolean {
     );
   }
 
-  // Case 3: Plain object comparison
+  // Array vs Vector
+  if (Array.isArray(this) && obj instanceof Vector) {
+    return (
+      this.length === obj.components.length &&
+      this.every((el: any, i: number) => el === obj.components[i])
+    );
+  }
+
+  if (this instanceof Vector && Array.isArray(obj)) {
+    return (
+      this.components.length === obj.length &&
+      this.components.every((el, i) => el === obj[i])
+    );
+  }
+
+  // Plain object fallback
   if (typeof this === "object" && typeof obj === "object") {
     const keysA = Object.keys(this);
     const keysB = Object.keys(obj);
@@ -76,7 +91,6 @@ Object.prototype.equals = function (obj: any): boolean {
     return keysA.every((k) => (this as any)[k] === obj[k]);
   }
 
-  // Case 4: Primitive fallback
   return this === obj;
 };
 
@@ -84,4 +98,4 @@ const a = new Vector([1, 2, 3]);
 const b = new Vector([3, 4, 5]);
 const c = new Vector([5, 6, 7, 8]);
 
-console.log(a.toString());
+console.log(a.add(b).equals(new Vector([4, 6, 8])));
